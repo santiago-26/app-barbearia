@@ -1,14 +1,14 @@
-package com.soluflow.app.entities;
+package com.soluflow.app.dominio.usuario;
 
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -18,17 +18,17 @@ public class Usuario implements Serializable {
     private String name;
     private String email;
     private String cel;
-    private LocalDateTime criacao;
+    private String senha;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String name, String email, String cel, LocalDateTime criacao) {
+    public Usuario(Long id, String name, String email, String cel) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.cel = cel;
-        this.criacao = criacao;
+
     }
 
     public Long getId() {
@@ -63,13 +63,6 @@ public class Usuario implements Serializable {
         this.cel = cel;
     }
 
-    public LocalDateTime getCriacao() {
-        return criacao;
-    }
-
-    public void setCriacao(LocalDateTime criacao) {
-        this.criacao = criacao;
-    }
 
     @Override
     public boolean equals(Object o) {
