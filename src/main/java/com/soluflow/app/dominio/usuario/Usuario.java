@@ -19,17 +19,21 @@ public class Usuario implements Serializable {
     private String name;
     private String email;
     private String cel;
+    @Enumerated(EnumType.STRING)
+    private Papel funcao;
     private String senha;
+
+
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String name, String email, String cel) {
+    public Usuario(Long id, String name, String email, String cel, Papel funcao) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.cel = cel;
-
+        this.funcao = funcao;
     }
 
     public Long getId() {
@@ -62,6 +66,14 @@ public class Usuario implements Serializable {
 
     public void setCel(String cel) {
         this.cel = cel;
+    }
+
+    public Papel getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Papel funcao) {
+        this.funcao = funcao;
     }
 
 

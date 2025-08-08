@@ -7,14 +7,15 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("BARBEIRO")
 public class Barbeiro extends Usuario{
+
     private Boolean disponivel;
     private List<String> especialidades;
 
     public Barbeiro() {
     }
 
-    public Barbeiro(Long id, String name, String email, String cel, Boolean disponivel, List<String> especialidades) {
-        super(id, name, email, cel);
+    public Barbeiro(Long id, String name, String email, String cel,Papel funcao, Boolean disponivel, List<String> especialidades) {
+        super(id, name, email, cel, funcao);
         this.disponivel = disponivel;
         this.especialidades = especialidades;
     }
