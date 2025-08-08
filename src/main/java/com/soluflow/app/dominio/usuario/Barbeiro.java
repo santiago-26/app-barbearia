@@ -5,11 +5,9 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_barbeiro")
+@DiscriminatorValue("BARBEIRO")
 public class Barbeiro extends Usuario{
     private Boolean disponivel;
-    @ElementCollection
-    @CollectionTable(name = "tb_especialidades", joinColumns = @JoinColumn(name = "barbeiro_id"))
     private List<String> especialidades;
 
     public Barbeiro() {

@@ -8,7 +8,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_usuario")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 public class Usuario implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
