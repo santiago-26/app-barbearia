@@ -1,13 +1,15 @@
 package com.soluflow.app.dominio.usuario;
 
+import com.soluflow.app.dominio.agendamento.Agendamento;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "tb_funcionario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 public class Usuario implements Serializable {
@@ -22,6 +24,7 @@ public class Usuario implements Serializable {
     @Enumerated(EnumType.STRING)
     private Papel funcao;
     private String senha;
+
 
 
 

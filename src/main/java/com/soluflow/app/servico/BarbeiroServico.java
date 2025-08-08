@@ -1,6 +1,6 @@
 package com.soluflow.app.servico;
 
-import com.soluflow.app.dominio.usuario.Barbeiro;
+import com.soluflow.app.dominio.usuario.Funcionario;
 
 import com.soluflow.app.repositorio.BarbeiroRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ public class BarbeiroServico {
     @Autowired
     private BarbeiroRepositorio repositorio;
 
-    public List<Barbeiro> findAll(){
+    public List<Funcionario> findAll(){
         return repositorio.findAll();
     }
 
-    public Barbeiro findByid(Long id){
-        Optional<Barbeiro> obj = repositorio.findById(id);
+    public Funcionario findByid(Long id){
+        Optional<Funcionario> obj = repositorio.findById(id);
         return obj.get();
     }
 }

@@ -1,9 +1,7 @@
 package com.soluflow.app.controlador;
 
 import com.soluflow.app.DTO.UsuarioResponseDTO;
-import com.soluflow.app.dominio.usuario.Barbeiro;
 import com.soluflow.app.dominio.usuario.Usuario;
-import com.soluflow.app.servico.BarbeiroServico;
 import com.soluflow.app.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
