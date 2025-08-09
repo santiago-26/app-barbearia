@@ -1,4 +1,4 @@
-package com.soluflow.app.DTO;
+package com.soluflow.app.dto;
 
 import com.soluflow.app.dominio.usuario.Papel;
 

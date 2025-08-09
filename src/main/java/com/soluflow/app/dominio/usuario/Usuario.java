@@ -25,9 +25,6 @@ public class Usuario implements Serializable {
     private Papel funcao;
     private String senha;
 
-
-
-
     public Usuario() {
     }
 

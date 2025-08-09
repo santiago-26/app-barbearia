@@ -1,7 +1,10 @@
 package com.soluflow.app.dominio.agendamento;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import com.soluflow.app.dominio.Pedido.Pedido;
 import com.soluflow.app.dominio.cliente.Cliente;
-import com.soluflow.app.dominio.servico.Servico;
+import com.soluflow.app.dominio.servico.Oficio;
 import com.soluflow.app.dominio.usuario.Funcionario;
 import jakarta.persistence.*;
 
@@ -18,6 +21,7 @@ public class Agendamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -26,21 +30,25 @@ public class Agendamento implements Serializable {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "servico_id", nullable = false)
-    private Servico servico;
-    private Status statusAgendamento;
+    @JoinColumn(name = "tarefa_id", nullable = false)
+    private Oficio oficio;
+    private Integer statusAgendamento;
+    @Enumerated(EnumType.STRING)
     private Origem origemAgendamento;
+    @OneToOne(mappedBy = "agendamento", fetch = FetchType.LAZY)
+    private Pedido pedido;
+
 
     public Agendamento() {
     }
 
-    public Agendamento(Long id, Instant moment, Cliente cliente, Funcionario funcionario, Servico servico, Status statusAgendamento, Origem origemAgendamento) {
+    public Agendamento(Long id, Instant moment, Cliente cliente, Funcionario funcionario, Oficio oficio, Status statusAgendamento, Origem origemAgendamento) {
         this.id = id;
         this.moment = moment;
         this.cliente = cliente;
         this.funcionario = funcionario;
-        this.servico = servico;
-        this.statusAgendamento = statusAgendamento;
+        this.oficio = oficio;
+        setStatusAgendamento(statusAgendamento);
         this.origemAgendamento = origemAgendamento;
     }
 
@@ -76,19 +84,21 @@ public class Agendamento implements Serializable {
         this.cliente = cliente;
     }
 
-    public Servico getServico() {
-        return servico;
+    public Oficio getOficio() {
+        return oficio;
     }
 
-    public void setServico(Servico servico) {
-        this.servico = servico;
+    public void setOficio(Oficio oficio) {
+        this.oficio = oficio;
     }
     public Status getStatusAgendamento() {
-        return statusAgendamento;
+        return Status.valueOf(statusAgendamento);
     }
 
     public void setStatusAgendamento(Status statusAgendamento) {
-        this.statusAgendamento = statusAgendamento;
+        if(statusAgendamento!=null) {
+            this.statusAgendamento = statusAgendamento.getCode();
+        }
     }
 
     public Origem getOrigemAgendamento() {
@@ -98,6 +108,7 @@ public class Agendamento implements Serializable {
     public void setOrigemAgendamento(Origem origemAgendamento) {
         this.origemAgendamento = origemAgendamento;
     }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

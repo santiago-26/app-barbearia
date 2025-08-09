@@ -1,5 +1,6 @@
 package com.soluflow.app.dominio.cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soluflow.app.dominio.agendamento.Agendamento;
 import jakarta.persistence.*;
 
@@ -19,8 +20,9 @@ public class Cliente implements Serializable {
     private Long id;
     private String nome;
     private String cel;
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente")
     private List<Agendamento> agendamentos = new ArrayList<>();
-
 
     public Cliente() {
     }
@@ -54,6 +56,7 @@ public class Cliente implements Serializable {
     public void setCel(String cel) {
         this.cel = cel;
     }
+
     public List<Agendamento> getAgendamentos() {
         return agendamentos;
     }

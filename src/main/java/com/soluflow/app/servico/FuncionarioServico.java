@@ -2,7 +2,7 @@ package com.soluflow.app.servico;
 
 import com.soluflow.app.dominio.usuario.Funcionario;
 
-import com.soluflow.app.repositorio.BarbeiroRepositorio;
+import com.soluflow.app.repositorio.FuncionarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BarbeiroServico {
+public class FuncionarioServico {
 
     @Autowired
-    private BarbeiroRepositorio repositorio;
+    private FuncionarioRepositorio repositorio;
 
     public List<Funcionario> findAll(){
         return repositorio.findAll();

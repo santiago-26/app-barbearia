@@ -1,7 +1,7 @@
 package com.soluflow.app.controlador;
 
-import com.soluflow.app.dominio.usuario.Funcionario;
-import com.soluflow.app.servico.BarbeiroServico;
+import com.soluflow.app.dominio.agendamento.Agendamento;
+import com.soluflow.app.servico.AgendamentoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/usuarios/barbeiro")
-public class BarbeiroControlador {
+@RequestMapping(value = "/agendamento")
+public class AgendamentoControlador {
 
     @Autowired
-    private BarbeiroServico servico;
+    private AgendamentoServico servico;
 
     @GetMapping
-    public ResponseEntity<List<Funcionario>> findAll() {
-        List<Funcionario> list = servico.findAll();
+    public ResponseEntity<List<Agendamento>> findAll() {
+        List<Agendamento> list = servico.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Funcionario> findById(@PathVariable Long id) {
-        Funcionario obj = servico.findByid(id);
+    public ResponseEntity<Agendamento> findById(@PathVariable Long id) {
+        Agendamento obj = servico.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 

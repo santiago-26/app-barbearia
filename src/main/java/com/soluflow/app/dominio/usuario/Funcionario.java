@@ -1,5 +1,6 @@
 package com.soluflow.app.dominio.usuario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soluflow.app.dominio.agendamento.Agendamento;
 import jakarta.persistence.*;
 
@@ -13,7 +14,7 @@ public class Funcionario extends Usuario{
     private Boolean disponivel;
     @Column(name = "especialidades")
     private String especialidades;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "funcionario")
     private List<Agendamento> agendamento = new ArrayList<>();
 
